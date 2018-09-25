@@ -1,0 +1,41 @@
+<div  class="index_menu_city_block menu_city_block pop_show">
+	<p class="index_menu_city geolocation"><span id="user-city"></span></p>
+	<div class="index_menu_city_sub hide_pop">
+	<a href="#" class="index_menu_city" data-id="1"><span>Київ</span></a>
+	<a href="#" class="index_menu_city" data-id="2"><span>Дніпро (Дніпропетровськ)</span></a>
+	<a href="#" class="index_menu_city" data-id="3"><span>Харків</span></a>
+	<a href="#" class="index_menu_city" data-id="4"><span>Бориспіль</span></a>
+	<a href="#" class="index_menu_city" data-id="7"><span>Черкаси</span></a>
+	<a href="#" class="index_menu_city" data-id="8"><span>Запоріжжя</span></a>
+	<a href="#" class="index_menu_city" data-id="9"><span>Вінниця</span></a>
+	<a href="#" class="index_menu_city" data-id="10"><span>Одеса</span></a>
+	<a href="#" class="index_menu_city" data-id="11"><span>Чернівці</span></a>
+	<a href="#" class="index_menu_city" data-id="12"><span>Луцьк</span></a>
+	<a href="#" class="index_menu_city" data-id="13"><span>Львів</span></a>
+	<a href="#" class="index_menu_city" data-id="14"><span>Суми</span></a>
+	<a href="#" class="index_menu_city" data-id="26"><span>Полтава</span></a>
+	</div>
+</div>
+</nav>
+<script src="//api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"></script>
+<script type="text/javascript">
+  window.onload = function () {
+      jQuery("#user-city").text(ymaps.geolocation.city);
+      jQuery("#user-region").text(ymaps.geolocation.region);
+      jQuery("#user-country").text(ymaps.geolocation.country);	  
+  }
+</script>
+
+
+<script>
+ $('div.index_menu_city_block').click(function () {
+        $(".index_menu_city_sub").toggle();
+    });
+    $('div.index_menu_city_sub a').click(function () {
+        var a = $(this).text()
+        var city = $(this).data("id")
+        $('div.pop_show p.index_menu_city span').text(a)
+        $.cookie("deliveryCity", city, {expires: 60, path: '/'})
+        location.reload()
+    });
+</script>
